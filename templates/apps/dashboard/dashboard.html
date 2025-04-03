@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Simples</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #142650;
+      color: #70f611;
+    }
+    header {
+      background-color: #0bd5f0;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      color: #142650;
+    }
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+    .card {
+      background-color: #b4874c;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #142650;
+    }
+    .card .number {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .card .percentage {
+      font-size: 1.5em;
+      color: #70f611;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard Simples</h1>
+  </header>
+  <div class="dashboard">
+    <div class="card">
+      <h2>Usuário: João</h2>
+      <p class="number">150</p>
+      <p>Vendas</p>
+      <p class="percentage">75% do alvo</p>
+    </div>
+    <div class="card">
+      <h2>Usuário: Maria</h2>
+      <p class="number">200</p>
+      <p>Cliques</p>
+      <p class="percentage">85% do alvo</p>
+    </div>
+    <div class="card">
+      <h2>Usuário: Pedro</h2>
+      <p class="number">90</p>
+      <p>Conversões</p>
+      <p class="percentage">60% do alvo</p>
+    </div>
+  </div>
+</body>
+</html>
