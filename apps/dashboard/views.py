@@ -1,6 +1,9 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Funcionario
 
 def dashboard(request):
-    return render(request, 'apps/dashboard/dashboard.html')
+    # Carrega todos funcionários ordenados por vendas
+    funcionarios = Funcionario.objects.all().order_by('-vendas')
+    return render(request, 'apps/dashboard/dashboard.html', {
+        'funcionarios': funcionarios
+    })

@@ -3,75 +3,209 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Simples</title>
+  <title>Dashboard de Vendas</title>
   <style>
+    :root {
+      --primary: #0bd5f0;
+      --dark: #0a1a3a;
+      --light: #70f611;
+      --accent: #b4874c;
+      --card-bg: #1a2b50;
+    }
+    
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #142650;
-      color: #70f611;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
     }
+    
     header {
-      background-color: #0bd5f0;
-      padding: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, #00c6ff 100%);
+      padding: 2rem;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+    
     header h1 {
       margin: 0;
-      color: #142650;
+      color: var(--dark);
+      font-size: 2.2rem;
+      font-weight: 700;
     }
-    .dashboard {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 20px;
-    }
-    .card {
-      background-color: #b4874c;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 10px;
-      width: 300px;
+    
+    .search-bar {
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      background-color: rgba(11, 213, 240, 0.1);
+      margin: 1rem auto;
+      max-width: 800px;
+      border-radius: 8px;
     }
-    .card h2 {
+    
+    .search-bar input {
+      padding: 0.8rem 1.2rem;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 50px;
+      border: 2px solid var(--primary);
+      background-color: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(11, 213, 240, 0.3);
+    }
+    
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(11, 213, 240, 0.2);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+    }
+    
+    .card h2, .card h3 {
       margin-top: 0;
-      color: #142650;
+      color: var(--primary);
+      font-weight: 600;
     }
+    
     .card .number {
-      font-size: 2em;
-      font-weight: bold;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+      color: white;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .card .percentage {
-      font-size: 1.5em;
-      color: #70f611;
+    
+    .todos-funcionarios {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .todos-funcionarios h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+    
+    .todos-funcionarios h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+    }
+    
+    .messages {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .alert {
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    
+    .alert-success {
+      background-color: #28a745;
+    }
+    
+    .alert-error {
+      background-color: #dc3545;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dashboard Simples</h1>
-  </header>
-  <div class="dashboard">
-    <div class="card">
-      <h2>Usuário: João</h2>
-      <p class="number">150</p>
-      <p>Vendas</p>
-      <p class="percentage">75% do alvo</p>
-    </div>
-    <div class="card">
-      <h2>Usuário: Maria</h2>
-      <p class="number">200</p>
-      <p>Cliques</p>
-      <p class="percentage">85% do alvo</p>
-    </div>
-    <div class="card">
-      <h2>Usuário: Pedro</h2>
-      <p class="number">90</p>
-      <p>Conversões</p>
-      <p class="percentage">60% do alvo</p>
-    </div>
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
   </div>
+  {% endif %}
+  <header>
+    <h1>Funcionários</h1>
+  </header>
+  
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Digite para buscar..." autocomplete="off">
+  </div>
+  
+  <div class="dashboard" id="funcionariosContainer">
+    {% for funcionario in funcionarios %}
+    <div class="card" data-nome="{{ funcionario.nome|lower }}">
+      <h2>{{ funcionario.nome }}</h2>
+      <p class="number">{{ funcionario.vendas }}</p>
+      <p>Vendas</p>
+      <p class="cpf">CPF: {{ funcionario.cpf }}</p>
+    </div>
+    {% empty %}
+    <div class="card">
+      <h2>Nenhum funcionário cadastrado</h2>
+      <p>Adicione funcionários para ver as estatísticas</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const cards = document.querySelectorAll('.card[data-nome]');
+      
+      cards.forEach(card => {
+        const nome = card.getAttribute('data-nome');
+        if (nome.includes(searchTerm)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

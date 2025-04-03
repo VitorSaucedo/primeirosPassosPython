@@ -1,0 +1,36 @@
+{% extends 'apps/dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="delete-confirm">
+  <h2>Confirmar Remoção</h2>
+  <p>Tem certeza que deseja remover o funcionário <strong>{{ funcionario.nome }}</strong>?</p>
+  
+  <form method="post">
+    {% csrf_token %}
+    <div class="actions">
+      <button type="submit" class="danger">Confirmar Remoção</button>
+      <a href="{% url 'dashboard' %}">
+        <button type="button">Cancelar</button>
+      </a>
+    </div>
+  </form>
+</div>
+
+<style>
+  .delete-confirm {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #b4874c;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .delete-confirm p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+  }
+  .danger {
+    background-color: #ff4444 !important;
+  }
+</style>
+{% endblock %}
